@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  http_server:
+    container_name: http_server
+    image: golang:alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    command: go run main.go http
+
+  dns_server:
+    container_name: dns_server
+    image: golang:alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "53:53/udp"
+    command: go run main.go dns
